@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { MapPin, Brain, Barbell, MusicNotes, EnvelopeSimple, GithubLogo, LinkedinLogo, Heart } from '@phosphor-icons/react'
+import Background3D from './Background3D'
 
 function App() {
   const glitchText = 'Konstantin'
@@ -48,8 +49,8 @@ function App() {
 
   return (
     <div className="min-h-screen bg-bg-dark text-[#e0e0e0] font-body relative">
-      {/* Animated Ambient background */}
-      <div className="fixed inset-0 pointer-events-none z-[-1] bg-[radial-gradient(circle_at_top_left,rgba(0,240,255,0.04),transparent_40%),radial-gradient(circle_at_bottom_right,rgba(138,43,226,0.04),transparent_40%)]" />
+      {/* 3D Animated Background */}
+      <Background3D />
 
       {/* Navigation */}
       <nav className="fixed top-0 w-full flex justify-between items-center px-[5%] py-4 glass-nav z-50">
