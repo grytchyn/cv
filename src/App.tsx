@@ -69,7 +69,7 @@ function App() {
         <div className="max-w-2xl mx-auto fade-in">
           <div className="relative w-[150px] h-[150px] mx-auto mb-8">
             <img
-              src="/avatar.jpg"
+              src="avatar.jpg"
               alt="Konstantin Avatar"
               className="w-full h-full rounded-full object-cover border-2 border-neon-purple z-10 relative"
             />
