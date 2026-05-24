@@ -11,14 +11,13 @@ function generateNoiseTexture(size: number) {
   for (let i = 0; i < imageData.data.length; i += 4) {
     const x = (i / 4) % size
     const y = Math.floor(i / 4 / size)
-    // Grid pattern + noise
     const grid = ((x % 8 < 1) || (y % 8 < 1)) ? 180 : 30
     const noise = Math.random() * 40
     const v = grid + noise
-    imageData.data[i] = 0       // R
-    imageData.data[i + 1] = v   // G
-    imageData.data[i + 2] = v   // B
-    imageData.data[i + 3] = 255 // A
+    imageData.data[i] = 0
+    imageData.data[i + 1] = v
+    imageData.data[i + 2] = v
+    imageData.data[i + 3] = 255
   }
   ctx.putImageData(imageData, 0, 0)
   const tex = new THREE.CanvasTexture(canvas)
@@ -28,6 +27,7 @@ function generateNoiseTexture(size: number) {
   return tex
 }
 
+// ─── Torus knot ───
 function TorusShape() {
   const groupRef = useRef<THREE.Group>(null)
   const noiseTex = useMemo(() => generateNoiseTexture(256), [])
@@ -104,7 +104,7 @@ function TorusShape() {
   )
 }
 
-// ─── Cosmic nebula glow (large soft sphere) ───
+// ─── Nebula glow (large soft sphere) ───
 function NebulaGlow() {
   const meshRef = useRef<THREE.Mesh>(null)
 
@@ -127,15 +127,11 @@ function NebulaGlow() {
       varying vec3 vNormal;
       uniform float uTime;
       void main() {
-        // Radial gradient from center
         float dist = length(vWorldPos) / 3.5;
         float alpha = exp(-dist * dist * 1.8) * 0.18;
-        // Slightly stronger near the "equator"
         float equator = 1.0 - abs(vNormal.y) * 0.7;
         alpha *= equator;
-        // Pulse
         alpha *= 0.85 + 0.15 * sin(uTime * 0.3) * cos(dist * 3.0);
-        // Cyan-purple mix
         vec3 color = mix(vec3(0.0, 0.6, 0.8), vec3(0.35, 0.1, 0.55), dist * 1.5);
         gl_FragColor = vec4(color, alpha);
       }
@@ -211,6 +207,63 @@ function Stars() {
   )
 }
 
+// ─── Cosmic triangulated mesh background ───
+function CosmicMesh() {
+  const groupRef = useRef<THREE.Group>(null)
+
+  // Large icosahedron with displaced vertices for irregular triangles
+  const { wireGeo, vertexGeo } = useMemo(() => {
+    const baseGeo = new THREE.IcosahedronGeometry(7.5, 5) // detail 5: ~10k vertices
+    const pos = baseGeo.attributes.position
+    // Displace vertices randomly while keeping overall spherical shape
+    for (let i = 0; i < pos.count; i++) {
+      const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i)
+      const len = Math.sqrt(x * x + y * y + z * z)
+      const nx = x / len, ny = y / len, nz = z / len
+      // Random displacement: 85%-115% of base radius
+      const noise = 0.85 + Math.random() * 0.3
+      pos.setXYZ(i, nx * 7.5 * noise, ny * 7.5 * noise, nz * 7.5 * noise)
+    }
+    baseGeo.computeVertexNormals()
+    return { wireGeo: baseGeo, vertexGeo: baseGeo }
+  }, [])
+
+  useFrame(({ clock }) => {
+    if (groupRef.current) {
+      groupRef.current.rotation.y = clock.getElapsedTime() * 0.03
+      groupRef.current.rotation.x = Math.sin(clock.getElapsedTime() * 0.1) * 0.04
+    }
+  })
+
+  return (
+    <group ref={groupRef}>
+      {/* Wireframe — the connecting lines */}
+      <mesh geometry={wireGeo} renderOrder={-2}>
+        <meshBasicMaterial
+          color="#8855cc"
+          wireframe
+          transparent
+          opacity={0.12}
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
+          toneMapped={false}
+        />
+      </mesh>
+      {/* Vertex dots — the glowing nodes */}
+      <points geometry={vertexGeo} renderOrder={-2}>
+        <pointsMaterial
+          size={0.045}
+          color="#bbddff"
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
+          transparent
+          opacity={0.35}
+        />
+      </points>
+    </group>
+  )
+}
+
 // ─── Main export ───
 export default function Background3D() {
   return (
@@ -225,7 +278,7 @@ export default function Background3D() {
         dpr={[1, 2]}
         style={{ width: '100%', height: '100%' }}
       >
-        {/* Very dark background */}
+        {/* Deep dark background */}
         <color attach="background" args={['#050510']} />
 
         {/* Scene fog for depth */}
@@ -235,9 +288,12 @@ export default function Background3D() {
         <ambientLight intensity={0.25} />
         <directionalLight position={[5, 5, 5]} intensity={0.5} />
 
-        {/* Colored point lights near the knot for "cosmic glow" */}
+        {/* Colored point lights near the knot */}
         <pointLight position={[2, 1, 2]} intensity={0.4} color="#00aacc" />
         <pointLight position={[-2, -1, 1]} intensity={0.3} color="#7722aa" />
+
+        {/* Background: cosmic triangulated mesh */}
+        <CosmicMesh />
 
         <NebulaGlow />
         <TorusShape />
