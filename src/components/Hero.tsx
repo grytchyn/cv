@@ -8,7 +8,7 @@ const Hero = () => {
 
       {/* Name — fades in second */}
       <h1 className="font-['JetBrains_Mono',monospace] text-[clamp(2rem,5vw,3rem)] font-semibold leading-[1.15] mb-4 hero-fade hero-fade-2">
-        <span className="text-green">Kostiantyn Grytchyn</span>
+        <span className="text-green">Konstantin Gritsch</span>
         <span className="cursor-blink"></span>
       </h1>
 
