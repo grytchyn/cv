@@ -67,7 +67,7 @@ function LangCard({ lang, delay }: { lang: Lang; delay: number }) {
 
 const Languages = () => {
   return (
-    <section className="px-6 py-16 max-w-[42.5rem] mx-auto">
+    <section className="px-8 py-16 max-w-[42.5rem] mx-auto">
       <p className="font-['JetBrains_Mono',monospace] text-xs text-green tracking-[1px] mb-1">/languages</p>
       <div className="w-10 h-px bg-green-dim mb-6"></div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

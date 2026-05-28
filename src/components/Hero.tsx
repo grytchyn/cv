@@ -1,6 +1,6 @@
 const Hero = () => {
   return (
-    <section className="min-h-[80vh] flex flex-col justify-center px-6 py-20 md:py-24 relative max-w-[42.5rem] mx-auto">
+    <section className="min-h-[80vh] flex flex-col justify-center px-8 py-20 md:py-24 relative max-w-[42.5rem] mx-auto">
       {/* $ cat about.json — fades in first */}
       <p className="font-['JetBrains_Mono',monospace] text-xs text-green-muted mb-5 hero-fade hero-fade-1">
         <span className="text-gold">$</span> cat about.json

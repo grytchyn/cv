@@ -21,7 +21,7 @@ const Contact = () => {
   }, []);
 
   return (
-    <section className="px-6 py-16 pb-24 max-w-[42.5rem] mx-auto">
+    <section className="px-8 py-16 pb-24 max-w-[42.5rem] mx-auto">
       <div
         ref={ref}
         className="rounded-xs border border-[var(--border)] p-8 text-center opacity-0"

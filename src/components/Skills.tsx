@@ -15,7 +15,7 @@ const Skills = () => {
   const ref = useScrollReveal<HTMLElement>(0, 'fade-in-up');
 
   return (
-    <section ref={ref} className="px-6 py-16 max-w-[42.5rem] mx-auto" style={{ opacity: 0 }}>
+    <section ref={ref} className="px-8 py-16 max-w-[42.5rem] mx-auto" style={{ opacity: 0 }}>
       <p className="font-['JetBrains_Mono',monospace] text-xs text-green tracking-[1px] mb-1">/skills</p>
       <div className="w-10 h-px bg-green-dim mb-6"></div>
 

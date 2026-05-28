@@ -83,7 +83,7 @@ function TimelineItemRow({ item, delay }: { item: TimelineItem; delay: number })
 
 const Education = () => {
   return (
-    <section className="px-6 py-16 max-w-[42.5rem] mx-auto">
+    <section className="px-8 py-16 max-w-[42.5rem] mx-auto">
       <p className="font-['JetBrains_Mono',monospace] text-xs text-green tracking-[1px] mb-1">/education</p>
       <div className="w-10 h-px bg-green-dim mb-6"></div>
       {educationItems.map((item) => (
@@ -95,7 +95,7 @@ const Education = () => {
 
 const Career = () => {
   return (
-    <section className="px-6 py-16 max-w-[42.5rem] mx-auto">
+    <section className="px-8 py-16 max-w-[42.5rem] mx-auto">
       <p className="font-['JetBrains_Mono',monospace] text-xs text-green tracking-[1px] mb-1">/career</p>
       <div className="w-10 h-px bg-green-dim mb-6"></div>
       {careerItems.map((item, i) => (
