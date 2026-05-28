@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  base: '/cv/',
+  base: process.env.RENDER ? '/' : '/cv/',
   plugins: [react(), tailwindcss()],
   build: {
     outDir: 'docs',
