@@ -62,8 +62,8 @@ function addSecurityHeaders(headers) {
 }
 
 const server = http.createServer((req, res) => {
-  // Decode URI to prevent encoded traversal attacks
-  const decodedUrl = decodeURIComponent(req.url);
+  // Decode URI to prevent encoded traversal attacks, strip query string
+  const decodedUrl = decodeURIComponent(req.url).split('?')[0];
   let filePath = path.resolve(path.join(DOCS_DIR, decodedUrl === '/' ? 'index.html' : decodedUrl));
 
   // Security: prevent directory traversal (must be inside DOCS_DIR)
