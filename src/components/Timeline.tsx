@@ -52,15 +52,21 @@ const careerItems: TimelineItem[] = [
 ];
 
 function TimelineItemRow({ item, delay }: { item: TimelineItem; delay: number }) {
-  const ref = useScrollReveal<HTMLDivElement>(delay);
+  const ref = useScrollReveal<HTMLDivElement>(delay, 'slide-in-left');
 
   return (
     <div
       ref={ref}
-      className="flex gap-5 py-4 pl-5 border-l border-[var(--border)] relative opacity-0"
+      className="flex gap-5 py-4 pl-5 border-l border-[var(--border)] relative opacity-0 transition-all duration-300 hover:pl-6"
       style={{ borderLeftColor: item.gold ? 'var(--gold)' : 'var(--border)' }}
     >
-      <div className="absolute left-[-3px] top-5 w-[6px] h-[6px] rounded-full bg-green"></div>
+      <div
+        className="absolute left-[-3px] top-5 w-[6px] h-[6px] rounded-full transition-all duration-300"
+        style={{
+          background: item.gold ? 'var(--gold)' : 'var(--green)',
+          boxShadow: item.gold ? '0 0 8px rgba(212,175,55,0.5)' : '0 0 4px rgba(0,200,83,0.3)',
+        }}
+      ></div>
       <div className="font-['JetBrains_Mono',monospace] text-xs text-green-muted min-w-[80px] shrink-0 pt-0.5">
         {item.date}
       </div>

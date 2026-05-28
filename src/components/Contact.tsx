@@ -1,7 +1,32 @@
+import { useEffect, useRef } from 'react';
+
 const Contact = () => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.style.opacity = '1';
+          el.classList.add('animate-fade-in-scale');
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="px-6 py-16 pb-24 max-w-[42.5rem] mx-auto">
-      <div className="rounded-xs border border-[var(--border)] p-8 text-center">
+      <div
+        ref={ref}
+        className="rounded-xs border border-[var(--border)] p-8 text-center opacity-0"
+        style={{ borderColor: 'var(--border-hover)' }}
+      >
         <h2 className="font-['JetBrains_Mono',monospace] text-sm font-normal text-green-muted mb-5">
           $ echo &quot;Sie suchen einen motivierten IT-Azubi?&quot;
         </h2>

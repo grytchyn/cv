@@ -1,6 +1,11 @@
 import { useRef, useEffect } from 'react';
 
-export function useScrollReveal<T extends HTMLElement>(delay = 0) {
+type AnimationType = 'fade-in-up' | 'fade-in-scale' | 'slide-in-left';
+
+export function useScrollReveal<T extends HTMLElement>(
+  delay = 0,
+  animation: AnimationType = 'fade-in-up'
+) {
   const ref = useRef<T>(null);
 
   useEffect(() => {
@@ -11,7 +16,7 @@ export function useScrollReveal<T extends HTMLElement>(delay = 0) {
       ([entry]) => {
         if (entry.isIntersecting) {
           setTimeout(() => {
-            el.classList.add('animate-fade-in');
+            el.classList.add(`animate-${animation}`);
             el.style.opacity = '1';
           }, delay);
           observer.unobserve(el);
@@ -22,7 +27,7 @@ export function useScrollReveal<T extends HTMLElement>(delay = 0) {
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [delay]);
+  }, [delay, animation]);
 
   return ref;
 }

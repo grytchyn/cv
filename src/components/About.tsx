@@ -1,7 +1,7 @@
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
 const About = () => {
-  const ref = useScrollReveal<HTMLElement>(0);
+  const ref = useScrollReveal<HTMLElement>(0, 'slide-in-left');
 
   return (
     <section ref={ref} className="px-6 py-16 max-w-[42.5rem] mx-auto" style={{ opacity: 0 }}>
