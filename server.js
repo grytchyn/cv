@@ -18,7 +18,7 @@ app.use(express.static(distPath, {
 }));
 
 // SPA fallback - all routes serve index.html
-app.get('*', (req, res) => {
+app.use((req, res) => {
   res.sendFile(path.join(distPath, 'index.html'));
 });
 
