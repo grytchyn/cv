@@ -4,7 +4,7 @@ const Project = () => {
   const ref = useScrollReveal<HTMLElement>(0, 'fade-in-scale');
 
   return (
-    <section ref={ref} className="px-8 py-16 max-w-[42.5rem] mx-auto" style={{ opacity: 0 }}>
+    <section ref={ref} className="px-8 py-16 max-w-[42.5rem] mx-auto opacity-0">
       <p className="font-['JetBrains_Mono',monospace] text-xs text-green tracking-[1px] mb-1">/project</p>
       <div className="w-10 h-px bg-green-dim mb-6"></div>
 
@@ -22,7 +22,7 @@ const Project = () => {
           ))}
         </div>
         <div className="flex gap-4">
-          <a href="https://grytchyn.github.io/ai-compliance-consultant/" target="_blank" rel="noopener noreferrer" className="font-['JetBrains_Mono',monospace] text-sm text-green no-underline transition-all duration-200 hover:text-gold inline-flex items-center gap-1.5 group">
+          <a href="https://ai-act-verify.onrender.com/" target="_blank" rel="noopener noreferrer" className="font-['JetBrains_Mono',monospace] text-sm text-green no-underline transition-all duration-200 hover:text-gold inline-flex items-center gap-1.5 group">
             Live-Demo <span className="group-hover:translate-x-0.5 transition-transform">→</span>
           </a>
           <a href="https://github.com/grytchyn/ai-compliance-consultant" target="_blank" rel="noopener noreferrer" className="font-['JetBrains_Mono',monospace] text-sm text-green no-underline transition-all duration-200 hover:text-gold inline-flex items-center gap-1.5 group">

@@ -49,12 +49,26 @@ const MIME_TYPES = {
   '.ttf': 'font/ttf',
 };
 
-const server = http.createServer((req, res) => {
-  let filePath = path.join(DOCS_DIR, req.url === '/' ? 'index.html' : req.url);
+const SECURITY_HEADERS = {
+  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+};
 
-  // Security: prevent directory traversal
+function addSecurityHeaders(headers) {
+  return { ...SECURITY_HEADERS, ...headers };
+}
+
+const server = http.createServer((req, res) => {
+  // Decode URI to prevent encoded traversal attacks
+  const decodedUrl = decodeURIComponent(req.url);
+  let filePath = path.resolve(path.join(DOCS_DIR, decodedUrl === '/' ? 'index.html' : decodedUrl));
+
+  // Security: prevent directory traversal (must be inside DOCS_DIR)
   if (!filePath.startsWith(DOCS_DIR)) {
-    res.writeHead(403);
+    res.writeHead(403, addSecurityHeaders({ 'Content-Type': 'text/plain' }));
     res.end('Forbidden');
     return;
   }
@@ -66,14 +80,14 @@ const server = http.createServer((req, res) => {
       // SPA fallback: serve index.html for any unmatched route
       fs.readFile(path.join(DOCS_DIR, 'index.html'), (err2, indexData) => {
         if (err2) {
-          res.writeHead(404, { 'Content-Type': 'text/plain' });
+          res.writeHead(404, addSecurityHeaders({ 'Content-Type': 'text/plain' }));
           res.end('Not Found');
           return;
         }
-        res.writeHead(200, {
+        res.writeHead(200, addSecurityHeaders({
           'Content-Type': 'text/html; charset=utf-8',
           'Cache-Control': 'no-cache, no-store, must-revalidate',
-        });
+        }));
         res.end(indexData);
       });
       return;
@@ -84,10 +98,10 @@ const server = http.createServer((req, res) => {
       ? 'no-cache, no-store, must-revalidate'
       : 'public, max-age=31536000, immutable';
 
-    res.writeHead(200, {
+    res.writeHead(200, addSecurityHeaders({
       'Content-Type': MIME_TYPES[ext] || 'application/octet-stream',
       'Cache-Control': cacheControl,
-    });
+    }));
     res.end(data);
   });
 });

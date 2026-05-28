@@ -15,7 +15,7 @@ const Skills = () => {
   const ref = useScrollReveal<HTMLElement>(0, 'fade-in-up');
 
   return (
-    <section ref={ref} className="px-8 py-16 max-w-[42.5rem] mx-auto" style={{ opacity: 0 }}>
+    <section ref={ref} className="px-8 py-16 max-w-[42.5rem] mx-auto opacity-0">
       <p className="font-['JetBrains_Mono',monospace] text-xs text-green tracking-[1px] mb-1">/skills</p>
       <div className="w-10 h-px bg-green-dim mb-6"></div>
 
@@ -28,8 +28,7 @@ const Skills = () => {
             {cat.skills.map((skill) => (
               <span
                 key={skill}
-                className="text-sm px-3.5 py-1 rounded-xs border border-[var(--border)] text-green-text transition-all duration-250 hover:border-green hover:text-green hover:bg-green/5 hover:scale-105"
-                style={{ cursor: 'default' }}
+                className="text-sm px-3.5 py-1 rounded-xs border border-[var(--border)] text-green-text cursor-default transition-all duration-250 hover:border-green hover:text-green hover:bg-green/5 hover:scale-105"
               >
                 {skill}
               </span>

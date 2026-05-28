@@ -24,8 +24,7 @@ const Contact = () => {
     <section className="px-8 py-16 pb-24 max-w-[42.5rem] mx-auto">
       <div
         ref={ref}
-        className="rounded-xs border border-[var(--border)] p-8 text-center opacity-0"
-        style={{ borderColor: 'var(--border-hover)' }}
+        className="rounded-xs border border-[var(--border-hover)] p-8 text-center opacity-0"
       >
         <h2 className="font-['JetBrains_Mono',monospace] text-sm font-normal text-green-muted mb-5">
           $ echo &quot;Sie suchen einen motivierten IT-Azubi?&quot;
