@@ -1,0 +1,102 @@
+import { useScrollReveal } from '../hooks/useScrollReveal';
+
+interface TimelineItem {
+  date: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  gold?: boolean;
+}
+
+const educationItems: TimelineItem[] = [
+  {
+    date: '2009 — 2015',
+    title: 'M.A. Werbung & Öffentlichkeitsarbeit',
+    subtitle: '★ Mit Auszeichnung',
+    description: 'Master of Arts — Grundstein für Kommunikation, Strategie und digitales Marketing.',
+    gold: true,
+  },
+];
+
+const careerItems: TimelineItem[] = [
+  {
+    date: '2025 — heute',
+    title: 'IT-Ausbildung',
+    subtitle: 'Lübeck, Deutschland',
+    description: 'Weiterbildung im IT-Bereich — Programmierung, Systeme, Tools.',
+  },
+  {
+    date: '2024',
+    title: 'Neuanfang in Deutschland',
+    subtitle: 'Kyiv → Lübeck',
+    description: 'Umzug, neue Sprache (B1), neue Perspektive — der Schritt in die IT.',
+  },
+  {
+    date: '2022 — 2024',
+    title: 'Online-Texter (Englisch)',
+    subtitle: 'AltRecipe · Kyiv',
+    description: 'Internationale Content-Produktion, Workflow-Management.',
+  },
+  {
+    date: '2017 — 2022',
+    title: 'Online-Texter',
+    subtitle: 'Wizard Digital · Kyiv',
+    description: 'Content Creation, SEO, digitale Strategien — 5 Jahre Erfahrung.',
+  },
+  {
+    date: '2015 — 2017',
+    title: 'Digital Marketing',
+    subtitle: 'COXO Digital · Kyiv',
+    description: 'Erste Schritte: Kampagnen, Strategie, Kundenkommunikation.',
+  },
+];
+
+function TimelineItemRow({ item, delay }: { item: TimelineItem; delay: number }) {
+  const ref = useScrollReveal<HTMLDivElement>(delay);
+
+  return (
+    <div
+      ref={ref}
+      className="flex gap-5 py-4 pl-5 border-l border-[var(--border)] relative opacity-0"
+      style={{ borderLeftColor: item.gold ? 'var(--gold)' : 'var(--border)' }}
+    >
+      <div className="absolute left-[-3px] top-5 w-[6px] h-[6px] rounded-full bg-green"></div>
+      <div className="font-['JetBrains_Mono',monospace] text-xs text-green-muted min-w-[80px] shrink-0 pt-0.5">
+        {item.date}
+      </div>
+      <div className="flex-1">
+        <h3 className="text-[0.92rem] font-semibold text-green-text mb-0.5">{item.title}</h3>
+        <p className={`text-sm mb-1 ${item.gold ? 'text-gold' : 'text-green-muted'}`}>
+          {item.subtitle}
+        </p>
+        <p className="text-sm text-green-text-dim leading-relaxed">{item.description}</p>
+      </div>
+    </div>
+  );
+}
+
+const Education = () => {
+  return (
+    <section className="px-6 py-16 max-w-[42.5rem] mx-auto">
+      <p className="font-['JetBrains_Mono',monospace] text-xs text-green tracking-[1px] mb-1">/education</p>
+      <div className="w-10 h-px bg-green-dim mb-6"></div>
+      {educationItems.map((item) => (
+        <TimelineItemRow key={item.title} item={item} delay={0} />
+      ))}
+    </section>
+  );
+};
+
+const Career = () => {
+  return (
+    <section className="px-6 py-16 max-w-[42.5rem] mx-auto">
+      <p className="font-['JetBrains_Mono',monospace] text-xs text-green tracking-[1px] mb-1">/career</p>
+      <div className="w-10 h-px bg-green-dim mb-6"></div>
+      {careerItems.map((item, i) => (
+        <TimelineItemRow key={item.title} item={item} delay={i * 100} />
+      ))}
+    </section>
+  );
+};
+
+export { Education, Career };
