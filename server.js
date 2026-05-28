@@ -1,68 +1,98 @@
-const express = require('express');
-const path = require('path');
+const http = require('http');
 const fs = require('fs');
+const path = require('path');
 
-const app = express();
 const PORT = process.env.PORT || 10000;
 
-// Try multiple possible paths for docs/
-const possiblePaths = [
-  path.join(__dirname, 'docs'),
-  path.join(process.cwd(), 'docs'),
-  '/opt/render/project/src/docs',
-];
-
-let distPath = null;
-for (const p of possiblePaths) {
-  if (fs.existsSync(p) && fs.existsSync(path.join(p, 'index.html'))) {
-    distPath = p;
-    break;
+// Resolve docs directory
+function findDocsDir() {
+  const candidates = [
+    path.join(__dirname, 'docs'),
+    path.join(process.cwd(), 'docs'),
+    '/opt/render/project/src/docs',
+  ];
+  for (const dir of candidates) {
+    const indexPath = path.join(dir, 'index.html');
+    if (fs.existsSync(indexPath)) {
+      console.log('📁 Found docs at:', dir);
+      return dir;
+    }
   }
+  return null;
 }
 
-console.log('__dirname:', __dirname);
-console.log('cwd:', process.cwd());
-console.log('possiblePaths checked:', possiblePaths);
-console.log('distPath resolved:', distPath);
+const DOCS_DIR = findDocsDir();
 
-if (!distPath) {
-  console.error('CRITICAL: Could not find docs/ with index.html');
-  // Emergency: list what's in the working directory
+if (!DOCS_DIR) {
+  console.error('❌ CRITICAL: docs/ directory not found!');
   try {
-    const entries = fs.readdirSync(process.cwd());
-    console.log('cwd contents:', entries);
-  } catch(e) {
+    const cwd = process.cwd();
+    console.log('cwd:', cwd);
+    console.log('cwd contents:', fs.readdirSync(cwd));
+  } catch (e) {
     console.error('Cannot list cwd:', e.message);
   }
-  
-  // Try to find index.html anywhere
-  try {
-    const findCmd = require('child_process').execSync('find /opt -name "index.html" 2>/dev/null | head -10').toString();
-    console.log('Found index.html files:', findCmd);
-  } catch(e) {}
-  
   process.exit(1);
 }
 
-console.log('Serving from:', distPath);
+const MIME_TYPES = {
+  '.html': 'text/html; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.js': 'application/javascript; charset=utf-8',
+  '.json': 'application/json',
+  '.svg': 'image/svg+xml',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.ico': 'image/x-icon',
+  '.woff2': 'font/woff2',
+  '.woff': 'font/woff',
+  '.ttf': 'font/ttf',
+};
 
-// Static files
-app.use(express.static(distPath, {
-  maxAge: '1y',
-  immutable: true,
-  setHeaders: function(res, filePath) {
-    if (filePath.endsWith('.html')) {
-      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-    }
+const server = http.createServer((req, res) => {
+  let filePath = path.join(DOCS_DIR, req.url === '/' ? 'index.html' : req.url);
+
+  // Security: prevent directory traversal
+  if (!filePath.startsWith(DOCS_DIR)) {
+    res.writeHead(403);
+    res.end('Forbidden');
+    return;
   }
-}));
 
-// SPA fallback
-app.use(function(req, res) {
-  res.sendFile(path.join(distPath, 'index.html'));
+  const ext = path.extname(filePath);
+
+  fs.readFile(filePath, (err, data) => {
+    if (err) {
+      // SPA fallback: serve index.html for any unmatched route
+      fs.readFile(path.join(DOCS_DIR, 'index.html'), (err2, indexData) => {
+        if (err2) {
+          res.writeHead(404, { 'Content-Type': 'text/plain' });
+          res.end('Not Found');
+          return;
+        }
+        res.writeHead(200, {
+          'Content-Type': 'text/html; charset=utf-8',
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+        });
+        res.end(indexData);
+      });
+      return;
+    }
+
+    // Cache control: HTML no-cache, assets cache long
+    const cacheControl = ext === '.html'
+      ? 'no-cache, no-store, must-revalidate'
+      : 'public, max-age=31536000, immutable';
+
+    res.writeHead(200, {
+      'Content-Type': MIME_TYPES[ext] || 'application/octet-stream',
+      'Cache-Control': cacheControl,
+    });
+    res.end(data);
+  });
 });
 
-app.listen(PORT, '0.0.0.0', function() {
-  console.log('CV portfolio running on port ' + PORT);
-  console.log('Ready: http://0.0.0.0:' + PORT);
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`✅ CV portfolio running on http://0.0.0.0:${PORT}`);
+  console.log(`   Serving from: ${DOCS_DIR}`);
 });
