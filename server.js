@@ -106,7 +106,12 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(PORT, '0.0.0.0', () => {
-  console.log(`✅ CV portfolio running on http://0.0.0.0:${PORT}`);
-  console.log(`   Serving from: ${DOCS_DIR}`);
-});
+// Only listen when run directly (not imported for testing)
+if (require.main === module) {
+  server.listen(PORT, '0.0.0.0', () => {
+    console.log(`✅ CV portfolio running on http://0.0.0.0:${PORT}`);
+    console.log(`   Serving from: ${DOCS_DIR}`);
+  });
+}
+
+module.exports = server;
