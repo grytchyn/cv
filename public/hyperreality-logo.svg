@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 80" fill="none">
+  <defs>
+    <linearGradient id="hr-glow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00ffff"/>
+      <stop offset="100%" stop-color="#ff00ff"/>
+    </linearGradient>
+    <linearGradient id="hr-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a0033"/>
+      <stop offset="100%" stop-color="#0d001a"/>
+    </linearGradient>
+  </defs>
+  <!-- Hexagon emblem -->
+  <g transform="translate(8, 8)">
+    <polygon points="20,0 40,0 50,16 40,32 20,32 10,16" fill="url(#hr-bg)" stroke="url(#hr-glow)" stroke-width="2"/>
+    <!-- Key icon inside hexagon -->
+    <circle cx="25" cy="16" r="4" stroke="url(#hr-glow)" stroke-width="1.5" fill="none"/>
+    <line x1="28" y1="16" x2="40" y2="16" stroke="url(#hr-glow)" stroke-width="1.5"/>
+    <line x1="36" y1="12" x2="36" y2="20" stroke="url(#hr-glow)" stroke-width="1.5"/>
+    <!-- Circuit traces -->
+    <line x1="10" y1="8" x2="16" y2="8" stroke="#00ffff" stroke-width="0.5" opacity="0.4"/>
+    <line x1="34" y1="28" x2="44" y2="28" stroke="#ff00ff" stroke-width="0.5" opacity="0.4"/>
+  </g>
+  <!-- Hyperreality Key text -->
+  <text x="70" y="34" fill="url(#hr-glow)" font-family="'JetBrains Mono', monospace" font-size="18" font-weight="700" letter-spacing="2">HYPERREALITY</text>
+  <text x="70" y="58" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="800" letter-spacing="3">KEY</text>
+  <!-- Spot the manipulation tagline -->
+  <text x="70" y="72" fill="#888" font-family="'JetBrains Mono', monospace" font-size="8" letter-spacing="2" opacity="0.7">SPOT THE MANIPULATION</text>
+</svg>

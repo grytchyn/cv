@@ -3,14 +3,16 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 const projects = [
   {
     name: 'AI Compliance Consultant',
-    desc: 'SaaS MVP — prüft automatisch, ob ein AI-Produkt dem EU AI Act entspricht. Formular → Web-Search → LLM-Analyse → Report.',
-    tags: ['Python', 'FastAPI', 'SQLite', 'LLM', 'Docker', 'GitHub Pages'],
+    logo: '/ai-verify-logo.svg',
+    desc: 'SaaS MVP — prüft automatisch, ob eine Website dem EU AI Act entspricht. Formular → Web-Search → LLM-Analyse → Report in 5 Sprachen (EN/DE/FR/IT/ES). Backend mit Flask + PostgreSQL, günstiges LLM über Ollama Cloud.',
+    tags: ['Python', 'Flask', 'PostgreSQL', 'LLM', 'Docker', 'Render'],
     demo: 'https://ai-act-verify.onrender.com/',
-    github: 'https://github.com/grytchyn/ai-compliance-consultant',
+    github: 'https://github.com/grytchyn/ai-verify',
   },
   {
     name: 'Hyperreality Key',
-    desc: 'Philosophisches Browserspiel gegen Desinformation — erkennst du Manipulation in Social-Media-Posts? 7 Level, 7 Tools, Baudrillard. Built with React 19 + TypeScript + Vite 8.',
+    logo: '/hyperreality-logo.svg',
+    desc: 'Philosophisches Browserspiel gegen Desinformation — erkennst du Manipulation in Social-Media-Posts? 7 Tiers, 9 philosophische Skeletons (Baudrillard, Foucault, Derrida…). Built with React 19 + TypeScript + Vite 8.',
     tags: ['React 19', 'TypeScript', 'Vite 8', 'Tailwind v4', 'LLM', 'Render'],
     demo: 'https://hyperreality-key.onrender.com/',
     github: 'https://github.com/grytchyn/hyperreality-key',
@@ -28,7 +30,10 @@ const Project = () => {
       <div className="flex flex-col gap-6">
         {projects.map((p) => (
           <div key={p.name} className="rounded-xs border border-[var(--border)] p-6 transition-all duration-300 hover:border-green/25 hover:-translate-y-1 hover:shadow-[0_0_16px_rgba(0,200,83,0.08)]">
-            <h3 className="text-base font-semibold text-green-text mb-2">{p.name}</h3>
+            <div className="flex items-start gap-4 mb-3">
+              <img src={p.logo} alt={`${p.name} logo`} className="w-32 h-10 object-contain shrink-0 mt-0.5" />
+              <h3 className="text-base font-semibold text-green-text pt-1">{p.name}</h3>
+            </div>
             <p className="text-sm text-green-text-dim leading-relaxed mb-4">{p.desc}</p>
             <div className="flex flex-wrap gap-1 mb-4">
               {p.tags.map((tag) => (
