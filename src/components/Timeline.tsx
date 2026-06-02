@@ -35,19 +35,19 @@ const careerItems: TimelineItem[] = [
     date: '2022 — 2024',
     title: 'Online-Texter (Englisch)',
     subtitle: 'AltRecipe · Kyiv',
-    description: 'Internationale Content-Produktion, Workflow-Management.',
+    description: 'Internationale Content-Produktion, enge Zusammenarbeit mit Dev-Team an Website-Features, Workflow-Management und Bug-Triage.',
   },
   {
     date: '2017 — 2022',
-    title: 'Online-Texter',
+    title: 'Digital Marketing & Dev-Bridge',
     subtitle: 'Wizard Digital · Kyiv',
-    description: 'Content Creation, SEO, digitale Strategien — 5 Jahre Erfahrung.',
+    description: 'Konzipierte Kampagnen-Mechaniken, schrieb technische Spezifikationen für Developer. Gemeinsames Debugging von Webapps und Landing Pages — Brücke zwischen Fachbereich und Code.',
   },
   {
     date: '2015 — 2017',
     title: 'Digital Marketing',
     subtitle: 'COXO Digital · Kyiv',
-    description: 'Erste Schritte: Kampagnen, Strategie, Kundenkommunikation.',
+    description: 'Erste Schritte: Kampagnen-Strategie, Kundenkommunikation, Zusammenarbeit mit Entwicklern an kleinen Web-Tools und Microsites.',
   },
 ];
 

@@ -8,9 +8,11 @@ const About = () => {
       <p className="font-['JetBrains_Mono',monospace] text-xs text-green tracking-[1px] mb-1">/about</p>
       <div className="w-10 h-px bg-green-dim mb-6"></div>
       <p className="text-sm md:text-[0.92rem] text-green-text-dim leading-relaxed max-w-[500px]">
-        10+ Jahre in digitalem Marketing und Content-Produktion — jetzt der Schritt in die IT.
-        {' '}<strong className="text-green-text font-medium">Strukturiert, lernbereit, lösungsorientiert.</strong>
-        {' '}Zuverlässig, sorgfältig, eigenständig.
+        10+ Jahre in digitalem Marketing mit engem Kontakt zur Softwareentwicklung — jetzt der Schritt in die IT.
+        {' '}<strong className="text-green-text font-medium">Brücke zwischen Fachbereich und Dev-Team.</strong>
+        {' '}Konzipierte Kampagnen-Mechaniken, schrieb technische Spezifikationen,
+        arbeitete mit Entwicklern an Apps, Websites und Games — von der Anforderung bis zum Debugging.
+        Strukturiert, lösungsorientiert, eigenständig.
       </p>
     </section>
   );
