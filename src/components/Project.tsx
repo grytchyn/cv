@@ -12,7 +12,7 @@ const projects = [
   {
     name: 'Hyperreality Key',
     logo: '/hyperreality-logo.svg',
-    desc: 'Philosophisches Browserspiel gegen Desinformation — erkennst du Manipulation in Social-Media-Posts? 7 Tiers, 9 philosophische Skeletons (Baudrillard, Foucault, Derrida…). Built with React 19 + TypeScript + Vite 8.',
+    desc: 'Philosophisches Browserspiel gegen Desinformation — erkennst du Manipulation in Social-Media-Posts? 12 Levels, 10 philosophische Skeletons (Baudrillard, Foucault, Derrida…). Built with React 19 + TypeScript + Vite 8.',
     tags: ['React 19', 'TypeScript', 'Vite 8', 'Tailwind v4', 'LLM', 'Render'],
     demo: 'https://hyperreality-key.onrender.com/',
     github: 'https://github.com/grytchyn/hyperreality-key',
