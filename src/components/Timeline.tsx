@@ -23,31 +23,19 @@ const careerItems: TimelineItem[] = [
     date: '2025 — heute',
     title: 'IT-Ausbildung',
     subtitle: 'Lübeck, Deutschland',
-    description: 'Weiterbildung im IT-Bereich — Programmierung, Systeme, Tools.',
-  },
-  {
-    date: '2024',
-    title: 'Neuanfang in Deutschland',
-    subtitle: 'Kyiv → Lübeck',
-    description: 'Umzug, neue Sprache (B1), neue Perspektive — der Schritt in die IT.',
+    description: 'Weiterbildung im IT-Bereich — Programmierung, Systeme, Tools. Eigenständige Projekte mit React, TypeScript, Git und Linux.',
   },
   {
     date: '2022 — 2024',
     title: 'Online-Texter (Englisch)',
     subtitle: 'AltRecipe · Kyiv',
-    description: 'Internationale Content-Produktion, enge Zusammenarbeit mit Dev-Team an Website-Features, Workflow-Management und Bug-Triage.',
+    description: 'Internationale Content-Produktion auf Englisch, enge Zusammenarbeit mit Dev-Team an Website-Features, Workflow-Management und Bug-Triage.',
   },
   {
     date: '2017 — 2022',
     title: 'Digital Marketing & Dev-Bridge',
     subtitle: 'Wizard Digital · Kyiv',
     description: 'Konzipierte Kampagnen-Mechaniken, schrieb technische Spezifikationen für Developer. Gemeinsames Debugging von Webapps und Landing Pages — Brücke zwischen Fachbereich und Code.',
-  },
-  {
-    date: '2015 — 2017',
-    title: 'Digital Marketing',
-    subtitle: 'COXO Digital · Kyiv',
-    description: 'Erste Schritte: Kampagnen-Strategie, Kundenkommunikation, Zusammenarbeit mit Entwicklern an kleinen Web-Tools und Microsites.',
   },
 ];
 
@@ -95,7 +83,7 @@ const Education = () => {
 
 const Career = () => {
   return (
-    <section className="px-8 py-16 max-w-[42.5rem] mx-auto">
+    <section id="career" className="px-8 py-16 max-w-[42.5rem] mx-auto scroll-mt-20">
       <p className="font-['JetBrains_Mono',monospace] text-xs text-green tracking-[1px] mb-1">/career</p>
       <div className="w-10 h-px bg-green-dim mb-6"></div>
       {careerItems.map((item, i) => (

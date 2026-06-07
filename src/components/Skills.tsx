@@ -3,7 +3,7 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 const skillCategories = [
   {
     label: '// technical',
-    skills: ['IT-Grundlagen', 'MS Office', 'Web-Tools', 'Dokumentation', 'Linux Basics'],
+    skills: ['JavaScript', 'React Basics', 'Git', 'Datenbanken', 'Linux Basics', 'Systemdenken', 'Integration & API', 'Architektur', 'Algorithmen'],
   },
   {
     label: '// soft',
@@ -15,7 +15,7 @@ const Skills = () => {
   const ref = useScrollReveal<HTMLElement>(0, 'fade-in-up');
 
   return (
-    <section ref={ref} className="px-8 py-16 max-w-[42.5rem] mx-auto opacity-0">
+    <section ref={ref} id="skills" className="px-8 py-16 max-w-[42.5rem] mx-auto opacity-0 scroll-mt-20">
       <p className="font-['JetBrains_Mono',monospace] text-xs text-green tracking-[1px] mb-1">/skills</p>
       <div className="w-10 h-px bg-green-dim mb-6"></div>
 

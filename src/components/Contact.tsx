@@ -21,13 +21,13 @@ const Contact = () => {
   }, []);
 
   return (
-    <section className="px-8 py-16 pb-24 max-w-[42.5rem] mx-auto">
+    <section id="contact" className="px-8 py-16 max-w-[42.5rem] mx-auto scroll-mt-20">
       <div
         ref={ref}
         className="rounded-xs border border-[var(--border-hover)] p-8 text-center opacity-0"
       >
         <h2 className="font-['JetBrains_Mono',monospace] text-sm font-normal text-green-muted mb-5">
-          $ echo &quot;Sie suchen einen motivierten IT-Azubi?&quot;
+          $ echo &quot;Sie suchen einen Azubi, der schon liefert?&quot;
         </h2>
 
         <a
@@ -44,7 +44,15 @@ const Contact = () => {
           >
             ✉️ konstantin.gritsch@gmail.com
           </a>
-          <span>📞 +49 177 9740018</span>
+          <a
+            href="https://github.com/grytchyn"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-green-text-dim no-underline transition-colors duration-200 hover:text-green"
+          >
+            🐙 github.com/grytchyn
+          </a>
+          <span><a href="tel:+491****0018" className="text-green-text-dim no-underline transition-colors duration-200 hover:text-green">📞 +49 177 9740018</a></span>
           <span>📍 23562 Lübeck, DE</span>
         </div>
       </div>

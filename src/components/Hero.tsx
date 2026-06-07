@@ -1,6 +1,6 @@
 const Hero = () => {
   return (
-    <section className="min-h-[80vh] flex flex-col justify-center px-8 py-20 md:py-24 relative max-w-[42.5rem] mx-auto">
+    <section className="min-h-[80vh] flex flex-col justify-center px-8 pt-28 pb-20 md:pt-32 md:pb-24 relative max-w-[42.5rem] mx-auto">
       {/* $ cat about.json — fades in first */}
       <p className="font-['JetBrains_Mono',monospace] text-xs text-green-muted mb-5 hero-fade hero-fade-1">
         <span className="text-gold">$</span> cat about.json
@@ -14,7 +14,7 @@ const Hero = () => {
 
       {/* Tagline — fades in third */}
       <p className="text-base md:text-lg font-light text-green-muted mb-6 max-w-[480px] hero-fade hero-fade-3">
-        IT-Specialist in Ausbildung · aus Leidenschaft und Überzeugung
+        10+ Jahre Digital Marketing &amp; Dev-Bridge · jetzt IT-Ausbildung
       </p>
 
       {/* Meta info — fades in fourth */}
@@ -37,6 +37,14 @@ const Hero = () => {
           ✉️ Kontakt
         </a>
         <a
+          href="https://www.linkedin.com/in/konstantin-gritsch-6a8520b2/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-['JetBrains_Mono',monospace] text-sm px-6 py-2.5 rounded-sm border border-[var(--border)] text-green-text no-underline transition-all duration-250 hover:border-green hover:text-green"
+        >
+          💼 LinkedIn
+        </a>
+        <a
           href="https://github.com/grytchyn"
           target="_blank"
           rel="noopener noreferrer"
@@ -44,6 +52,12 @@ const Hero = () => {
         >
           🐙 GitHub
         </a>
+        <button
+          onClick={() => window.print()}
+          className="font-['JetBrains_Mono',monospace] text-sm px-6 py-2.5 rounded-sm border border-[var(--border)] text-green-text cursor-pointer bg-transparent transition-all duration-250 hover:border-green hover:text-green hover:bg-green/5"
+        >
+          📄 CV
+        </button>
       </div>
 
       {/* Scroll hint */}
