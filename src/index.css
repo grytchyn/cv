@@ -111,10 +111,10 @@ body::before {
   nav, .bounce-down, .cursor-blink, .hero-fade,
   *[class*="animate-"] { display: none !important; }
 
-  /* Dark background, light text */
+  /* Dark → white background, black text */
   body, html {
-    background: #121212 !important;
-    color: #f0f0f0 !important;
+    background: #fff !important;
+    color: #000 !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
@@ -130,44 +130,43 @@ body::before {
   section + section { page-break-inside: avoid; }
 
   /* Links: show URL after */
-  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.7em; color: #a0a0a0; }
-  a { color: #f0f0f0 !important; text-decoration: underline !important; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.7em; color: #555; }
+  a { color: #000 !important; text-decoration: underline !important; }
 
   /* Skill tags: compact inline */
   section[id="skills"] span {
-    border: 1px solid #333 !important; color: #f0f0f0 !important;
-    background: #1e1e1e !important; padding: 1px 6px !important;
+    border: 1px solid #ccc !important; color: #000 !important;
+    background: #f5f5f5 !important; padding: 1px 6px !important;
     font-size: 0.75rem !important;
     border-radius: 2px !important;
   }
 
   /* Override the green-muted text */
   .text-green-text, .text-green-text-dim, .text-green-muted, .text-green {
-    color: #f0f0f0 !important;
+    color: #000 !important;
   }
-  .text-gold { color: #d4af37 !important; }
+  .text-gold { color: #8a6e00 !important; }
 
   /* Project cards */
   section[id="projects"] > div > div {
-    border: 1px solid #333 !important;
+    border: 1px solid #ddd !important;
     page-break-inside: avoid;
     box-shadow: none !important;
-    background: #1e1e1e !important;
   }
 
   /* Headings */
-  h1, h2, h3, h4 { color: #f0f0f0 !important; }
+  h1, h2, h3, h4 { color: #000 !important; }
 
   /* Timeline dots/lines */
-  section[id="career"] [class*="border-l"] { border-left-color: #333 !important; }
+  section[id="career"] [class*="border-l"] { border-left-color: #ccc !important; }
   section[id="career"] [class*="rounded-full"] {
-    background: #333 !important;
+    background: #000 !important;
     box-shadow: none !important;
   }
 
   /* Contact section border */
-  section[id="contact"] > div { border-color: #333 !important; }
+  section[id="contact"] > div { border-color: #ccc !important; }
 
   /* Hide the green/gold badges */
-  span[class*="bg-green/"] { background: #2a2a2a !important; color: #f0f0f0 !important; }
+  span[class*="bg-green/"] { background: #eee !important; color: #000 !important; }
 }
