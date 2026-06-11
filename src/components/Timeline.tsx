@@ -21,9 +21,9 @@ const educationItems: TimelineItem[] = [
 const careerItems: TimelineItem[] = [
   {
     date: '2025 — heute',
-    title: 'IT-Ausbildung',
+    title: 'IT-Ausbildung · AI-Augmented Delivery',
     subtitle: 'Lübeck, Deutschland',
-    description: 'Weiterbildung im IT-Bereich — Programmierung, Systeme, Tools. Eigenständige Projekte mit React, TypeScript, Git und Linux.',
+    description: 'Eigenständige Projekte mit React, TypeScript, Docker und CI/CD. Orchestriere Multi-Agent-Workflows, designe Systemarchitekturen und deploye auf Linux-VPS. Systematische Problemlösung mit Diagnose-Framework.',
   },
   {
     date: '2022 — 2024',

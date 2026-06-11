@@ -2,8 +2,12 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 
 const skillCategories = [
   {
+    label: '// ai-augmented',
+    skills: ['Systemdenken', 'Integration & API', 'Architektur', 'AI-Augmented Workflow Design', 'Multi-Agent Orchestration', 'DevOps & CI/CD', 'Infrastructure as Code', 'Diagnose & Debugging', 'Strukturierte Problemlösung'],
+  },
+  {
     label: '// technical',
-    skills: ['JavaScript', 'React Basics', 'Git', 'Datenbanken', 'Linux Basics', 'Systemdenken', 'Integration & API', 'Architektur', 'Algorithmen'],
+    skills: ['TypeScript', 'React', 'Python', 'Git', 'Docker', 'Linux', 'Datenbanken', 'Algorithmen'],
   },
   {
     label: '// soft',

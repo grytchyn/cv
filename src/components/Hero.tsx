@@ -14,7 +14,7 @@ const Hero = () => {
 
       {/* Tagline — fades in third */}
       <p className="text-base md:text-lg font-light text-green-muted mb-6 max-w-[480px] hero-fade hero-fade-3">
-        10+ Jahre Digital Marketing &amp; Dev-Bridge · jetzt IT-Ausbildung
+        10+ Jahre Dev-Bridge · jetzt IT-Ausbildung · AI-Augmented Delivery
       </p>
 
       {/* Meta info — fades in fourth */}

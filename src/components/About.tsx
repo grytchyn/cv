@@ -12,7 +12,11 @@ const About = () => {
         {' '}<strong className="text-green-text font-medium">Brücke zwischen Fachbereich und Dev-Team.</strong>
         {' '}Konzipierte Kampagnen-Mechaniken, schrieb technische Spezifikationen,
         arbeitete mit Entwicklern an Apps, Websites und Games — von der Anforderung bis zum Debugging.
-        Strukturiert, lösungsorientiert, eigenständig.
+      </p>
+      <p className="text-sm md:text-[0.92rem] text-green-text-dim leading-relaxed max-w-[500px] mt-4">
+        Heute orchestriere ich <strong className="text-green-text font-medium">Multi-Agent-Workflows</strong>,
+        designe Systemarchitekturen und deploye eigene Projekte mit React, Docker und CI/CD.
+        <strong className="text-green-text font-medium"> Strukturiert, lösungsorientiert, eigenständig.</strong>
       </p>
 
     </section>
